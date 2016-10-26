@@ -37,3 +37,7 @@ string Decoder::insertError(string input) {
 	}
 	return input;
 }
+
+string Decoder::decode(string input) {
+	return "";
+}

@@ -10,7 +10,7 @@ FileIO::~FileIO()
 {
 }
 
-//Read individual file
+//Read file as one string
 string FileIO::read(string path) throw (invalid_argument) {
 
 	string input;
@@ -33,14 +33,24 @@ string FileIO::read(string path) throw (invalid_argument) {
 	return input;
 }
 
-void FileIO::read(string* arr, string path) {
+//Read file line by line into an array
+void FileIO::read(string* arr, string path) throw (invalid_argument) {
+	
 	string line;
 	int count = 0;
-	ifstream myfile(path);
-	while (getline(myfile, line))
+
+	ifstream file(path);
+
+	if (file.is_open())
 	{
-		arr[count] = line;
-		count++;
+		while (getline(file, line))
+		{
+			arr[count] = line;
+			count++;
+		}
+		file.close();
 	}
-	myfile.close();
+	else {
+		throw invalid_argument("no file exists " + path);
+	}
 }

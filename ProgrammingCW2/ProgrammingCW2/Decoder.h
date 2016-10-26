@@ -13,6 +13,6 @@ public:
 	Decoder();
 	~Decoder();
 	string insertError(string s);
-	//string decode(string input);
+	string decode(string input);
 };
 
