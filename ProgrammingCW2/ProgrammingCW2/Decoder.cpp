@@ -42,14 +42,22 @@ string Decoder::insertError(string input) {
 //string states[8] = { "000", "001", "010", "011", "100", "101", "110", "111" };
 //int stateMoves[8][2] = { { 0 , 4 },{ 0 , 4 },{ 1 , 5 },{ 1 , 5 },{ 2 , 6 },{ 2 , 6 },{ 3 , 7 },{ 3 , 7 } };
 string Decoder::decode(string arr[][2], string input) {
+
+	string decodedText = "";
+
 	int currentState = 0;
 	for (int place = 0; place < input.length() - 1; place += 2) {
-		string bits = "";
-		if () {
-
+		string bits = input.substr(place,2);
+		if (bits.compare(arr[currentState][0]) == 0) {
+			decodedText += "0";
+			currentState = stateMoves[currentState][0];
+		}
+		else {
+			decodedText += "1";
+			currentState = stateMoves[currentState][1];
 		}
 	}
-	return "";
+	return decodedText;
 }
 
 //XOR Method
