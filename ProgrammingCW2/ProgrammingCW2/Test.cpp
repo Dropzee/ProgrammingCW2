@@ -7,8 +7,9 @@
 using namespace std;
 
 int main() {
-
+	
 	string originalText;
+	stateTransition statePermutations[49][8];
 	string fileNames[49], encodedText[49], burstErrorText[49], decodedText[49], decodedError[49];
 
 	FileIO* io = new FileIO();
@@ -17,6 +18,10 @@ int main() {
 	try {
 		originalText = io->read("binaryFile.txt");
 		io->read(&fileNames[0],"fileNames.txt");
+
+		stateTransition test[8];
+
+		d->generateTrellis(&test[0], fileNames[43]);
 
 		for (int i = 0; i < 49; i++) {
 
@@ -31,9 +36,6 @@ int main() {
 		cout << iae.what() << endl;
 		exit(1);
 	}
-
-	encodedText;
-	burstErrorText;
 
 	delete io;
 	delete d;

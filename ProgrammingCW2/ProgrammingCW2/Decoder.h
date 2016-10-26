@@ -8,7 +8,6 @@
 using namespace std;
 
 struct stateTransition {
-	string state; //register state ie. 010
 	string bits[2]; //output bits given input 0 or 1
 	stateTransition* nextState[2]; //next state given 0 or 1
 };
@@ -20,7 +19,8 @@ public:
 	~Decoder();
 	string insertError(string s);
 	string decode(string input);
+	void generateTrellis(stateTransition* arr, string names);
 private:
-
+	string XOR(char a, char b);
 };
 
