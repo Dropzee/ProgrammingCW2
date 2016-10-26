@@ -73,8 +73,8 @@ void Decoder::generateTrellis(string arr[][2], string name) {
 
 			string current = to_string(bit) + states[state];
 
+			arr[state][bit] += XOR(current.at(name.at(5) - 48), current.at(name.at(7) - 48));
 			arr[state][bit] += XOR(current.at(name.at(15) - 48), current.at(name.at(17) - 48));
-			arr[state][bit] += XOR(current.at(name.at(5) - 48),  current.at(name.at(7) - 48));
 
 		}
 	}
