@@ -12,6 +12,6 @@ public:
 	FileIO();
 	~FileIO();
 	string read(string path);
-	void read(vector<string> &files, string folder);
+	void read(string* arr, string path);
 };
 

@@ -33,7 +33,14 @@ string FileIO::read(string path) throw (invalid_argument) {
 	return input;
 }
 
-//Read all files in a folder
-void FileIO::read(vector<string> &files, string folder) {
-
+void FileIO::read(string* arr, string path) {
+	string line;
+	int count = 0;
+	ifstream myfile(path);
+	while (getline(myfile, line))
+	{
+		arr[count] = line;
+		count++;
+	}
+	myfile.close();
 }
