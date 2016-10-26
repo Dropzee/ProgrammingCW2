@@ -6,6 +6,8 @@
 
 using namespace std;
 
+void analyse(string in, string out){}
+
 int main() {
 	
 	string originalText;
@@ -28,6 +30,9 @@ int main() {
 
 			decodedText[i] = d->decode(trellis[i], encodedText[i]);
 			decodedError[i] = d->decode(trellis[i], burstErrorText[i]);
+
+			io->write(decodedText[i], "Decoded\\Without Error\\" + fileNames[i]);
+			io->write(decodedError[i], "Decoded\\With Error\\" + fileNames[i]);
 		}
 	}
 	catch (const invalid_argument& iae) {

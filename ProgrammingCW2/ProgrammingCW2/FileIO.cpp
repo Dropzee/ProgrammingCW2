@@ -54,3 +54,11 @@ void FileIO::read(string* arr, string path) throw (invalid_argument) {
 		throw invalid_argument("no file exists " + path);
 	}
 }
+
+//File Write
+void FileIO::write(string output, string name) {
+	ofstream myfile;
+	myfile.open(name + ".txt");
+	myfile << output;
+	myfile.close();
+}

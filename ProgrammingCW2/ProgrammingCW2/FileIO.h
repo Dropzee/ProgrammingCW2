@@ -13,5 +13,6 @@ public:
 	~FileIO();
 	string read(string path);
 	void read(string* arr, string path);
+	void write(string output, string path);
 };
 
