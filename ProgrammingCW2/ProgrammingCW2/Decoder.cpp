@@ -24,7 +24,7 @@ string Decoder::insertError(string input) {
 		if (burstMode) {
 			input[i] = (char)((rand() % 2 + 48)); //ascii 0 - 48, 1 - 49
 			count++;
-			if (count > 4) {
+			if (count > 0) {
 				burstMode = false;
 				count = 0;
 			}

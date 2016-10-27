@@ -44,13 +44,18 @@ int main() {
 				}
 				break;
 			case 2:
+				ui->view(fileNames, decodedText);
 				break;
 			case 3:
+				ui->view(fileNames, decodedError);
 				break;
 			case 4:
+				ui->anaylse(originalText, decodedText, decodedError);
+				break;
+			case 5:
 				goto Exit;
 			default:
-				cout << "Please enter a menu option between 1-4!" << endl;
+				cout << "Please enter a menu option between 1-5!" << endl;
 			}
 		}
 	}
