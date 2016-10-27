@@ -1,10 +1,6 @@
-﻿  UI.cpp
-c:\users\jackc\documents\uni\year 4\csc8501 - advanced programming for games\cw2\programmingcw2\programmingcw2\programmingcw2\ui.cpp(12): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-c:\users\jackc\documents\uni\year 4\csc8501 - advanced programming for games\cw2\programmingcw2\programmingcw2\programmingcw2\ui.cpp(38): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-  Decoder.cpp
+﻿  Decoder.cpp
 c:\users\jackc\documents\uni\year 4\csc8501 - advanced programming for games\cw2\programmingcw2\programmingcw2\programmingcw2\decoder.cpp(18): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 c:\users\jackc\documents\uni\year 4\csc8501 - advanced programming for games\cw2\programmingcw2\programmingcw2\programmingcw2\decoder.cpp(23): warning C4018: '<': signed/unsigned mismatch
 c:\users\jackc\documents\uni\year 4\csc8501 - advanced programming for games\cw2\programmingcw2\programmingcw2\programmingcw2\decoder.cpp(52): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
   ProgrammingCW2.vcxproj -> C:\Users\jackc\Documents\Uni\Year 4\CSC8501 - Advanced Programming for Games\CW2\ProgrammingCW2\ProgrammingCW2\Debug\ProgrammingCW2.exe
   ProgrammingCW2.vcxproj -> C:\Users\jackc\Documents\Uni\Year 4\CSC8501 - Advanced Programming for Games\CW2\ProgrammingCW2\ProgrammingCW2\Debug\ProgrammingCW2.pdb (Full PDB)

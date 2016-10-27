@@ -56,7 +56,7 @@ string BST::recover(node** tree, string text, int currentState, int stateMoves[]
 
 		//Safety to prevent infinite while loop and limit the size of the tree
 		if (depthCounter >= (text.length() / 2) || depthCounter >= 5) {
-			return "";
+			return "00";
 		}
 
 		addLayer(tree, stateMoves);
@@ -65,7 +65,13 @@ string BST::recover(node** tree, string text, int currentState, int stateMoves[]
 		if (solution != NULL) {
 			stack<int> output;
 			getText(solution, &output);
-			return "";
+
+			string bits;
+			while (output.size() > 0) {
+				bits += to_string(output.top());
+				output.pop();
+			}
+			return string(bits.rbegin(), bits.rend());
 		}
 
 		depthCounter++;

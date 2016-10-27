@@ -19,10 +19,17 @@ int main() {
 	Decoder* d = new Decoder();
 	UI* ui = new UI();
 
+	//string s;
+
 	try {
 
 		originalText = io->read("binaryFile.txt");
 		io->read(&fileNames[0],"fileNames.txt");
+
+
+		/*encodedText[43] = io->read("Encoded\\" + fileNames[43] + ".txt");
+		d->generateTrellis(trellis[43], fileNames[43]);
+		s = d->decode(trellis[43], encodedText[43]);*/
 
 		while (true) {
 			switch (ui->menu()) {

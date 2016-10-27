@@ -68,6 +68,7 @@ void UI::anaylse(string original, string decodedText[], string decodedErrors[]) 
 		int errorCount = 0;
 		for (int i = 0; i < 49; i++) {
 			if (original.compare(decodedText[i]) == 0) {
+				cout << i << endl;
 				textCount++;
 			}
 			if (original.compare(decodedErrors[i]) == 0) {
