@@ -12,6 +12,7 @@ Decoder::~Decoder()
 {
 }
 
+//Error insertion method provided in spec
 string Decoder::insertError(string input) {
 
 	srand(time(NULL));
@@ -43,18 +44,36 @@ string Decoder::insertError(string input) {
 //int stateMoves[8][2] = { { 0 , 4 },{ 0 , 4 },{ 1 , 5 },{ 1 , 5 },{ 2 , 6 },{ 2 , 6 },{ 3 , 7 },{ 3 , 7 } };
 string Decoder::decode(string arr[][2], string input) {
 
-	string decodedText = "";
+	string decodedText;
 
 	int currentState = 0;
+
+	//For every 2 bits
 	for (int place = 0; place < input.length() - 1; place += 2) {
+
 		string bits = input.substr(place,2);
+
+		//If they match the output from current state given a 0...
 		if (bits.compare(arr[currentState][0]) == 0) {
 			decodedText += "0";
 			currentState = stateMoves[currentState][0];
 		}
-		else {
+		//If they match the output from current state given a 1...
+		else if (bits.compare(arr[currentState][1]) == 0) {
 			decodedText += "1";
 			currentState = stateMoves[currentState][1];
+		}
+		//There was an error...
+		else {
+			BST trace(); //int = state
+			while (true) {
+				//for each node in tree
+				//add 2 children
+				//check there outputs against bits
+				//if match found, trace back
+
+				break;
+			}
 		}
 	}
 	return decodedText;
@@ -68,11 +87,13 @@ string Decoder::XOR(char a, char b) {
 //Generates outputs for each state given 0 or 1
 void Decoder::generateTrellis(string arr[][2], string name) {
 
+	//For every state given a 0 or a 1...
 	for (int state = 0; state < 8; state++) {
 		for (int bit = 0; bit < 2; bit++) {
 
 			string current = to_string(bit) + states[state];
 
+			//Calculate what the output would be given register setup (uses file name to get register permutation)
 			arr[state][bit] += XOR(current.at(name.at(5) - 48), current.at(name.at(7) - 48));
 			arr[state][bit] += XOR(current.at(name.at(15) - 48), current.at(name.at(17) - 48));
 
