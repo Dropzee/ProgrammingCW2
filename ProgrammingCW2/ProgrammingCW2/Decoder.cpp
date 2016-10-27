@@ -65,17 +65,15 @@ string Decoder::decode(string arr[][2], string input) {
 		}
 		//There was an error...
 		else {
-			BST trace(); //int = state
-			while (true) {
-				//for each node in tree
-				//add 2 children
-				//check there outputs against bits
-				//if match found, trace back
-
-				break;
-			}
+			BST* trace = new BST(); //int = state
+			string text = trace->recover(currentState, stateMoves);
+			decodedText += text;
+			place += text.length();
 		}
 	}
+
+	//REMEMBER TO DELETE TREE
+
 	return decodedText;
 }
 
