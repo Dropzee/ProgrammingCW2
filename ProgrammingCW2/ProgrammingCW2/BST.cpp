@@ -41,26 +41,34 @@ void BST::insert(node** tree, int inputBit, int state) {
 	}
 }
 
-string BST::recover(int currentState, int stateMoves[][2], int trellis[][2]) {
-	return recover(&root, currentState, stateMoves, trellis);
+string BST::recover(string text, int currentState, int stateMoves[][2], string trellis[][2]) {
+	return recover(&root, text, currentState, stateMoves, trellis);
 }
 
 
-string BST::recover(node** tree, int currentState, int stateMoves[][2], int trellis[][2]) {
-	if (tree != NULL) {
-		int depthCounter = 0;
-		while (true) {
+string BST::recover(node** tree, string text, int currentState, int stateMoves[][2], string trellis[][2]) {
 
-			//Safety to prevent infinite while loop and limit the size of the tree
-			if (depthCounter >= 9) {
-				return "";
-			}
+	insert(0, currentState);
 
-			addLayer(tree, stateMoves);
-			
-			//test
+	int depthCounter = 0;
+
+	while (true) {
+
+		//Safety to prevent infinite while loop and limit the size of the tree
+		if (depthCounter >= 9) {
+			return "";
 		}
+
+		addLayer(tree, stateMoves);
+
+		node* solution = testPaths(text.substr(depthCounter * 2, 2), trellis);
+		if (solution != NULL) {
+			//akfhasjldasl;jdfh
+		}
+
+		depthCounter++;
 	}
+
 }
 
 void BST::addLayer(node** tree, int stateMoves[][2]) {
@@ -74,37 +82,30 @@ void BST::addLayer(node** tree, int stateMoves[][2]) {
 	}
 }
 
-//void BST::print_tree() {
-//	cout << "BST: ";
-//	print_tree(root);
-//}
+node* BST::testPaths(string targetBits, string trellis[][2]) {
+	return testPaths(root, targetBits, trellis);
+}
 
-//void BST::print_tree(node* tree) {
-//	if (tree != NULL) {
-//		print_tree(tree->left);
-//		cout << tree->value << " ";
-//		print_tree(tree->right);
-//	}
-//}
+node* BST::testPaths(node* tree, string targetBits, string trellis[][2]) {
+	if (tree->left == NULL || tree->right == NULL) {
+		return NULL;
+	}
+	else {
+		if (trellis[tree->left->state][0] == targetBits) {
+			return tree->left;
 
-//bool BST::search(int value) {
-//	return search(root, value);
-//}
+		}
+		else if (trellis[tree->left->state][1] == targetBits) {
+			return tree->right;
+		}
+		else {
+			testPaths(tree->left, targetBits, trellis);
+			testPaths(tree->right, targetBits, trellis);
+		}
+	}
+	return NULL;
+}
 
-//bool BST::search(node* tree, int value) {
-//	if (tree == NULL) {
-//		return false;
-//	}
-//	else {
-//		if (tree->value == value) {
-//			return true;
-//		}
-//		if (value < tree->value) {
-//			search(tree->left, value);
-//
-//		}
-//		else if (value >= tree->value) {
-//			search(tree->right, value);
-//		}
-//	}
-//}
+string BST::getText(node* solution) {
+	return "";
+}

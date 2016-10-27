@@ -66,7 +66,7 @@ string Decoder::decode(string trellis[][2], string input) {
 		//There was an error...
 		else {
 			BST* trace = new BST(); //int = state
-			string text = trace->recover(currentState, stateMoves, trellis);
+			string text = trace->recover(input.substr(place), currentState, stateMoves, trellis);
 			decodedText += text;
 			place += text.length();
 		}

@@ -17,16 +17,15 @@ public:
 	BST();
 	~BST();
 	void insert(int inputBit, int state);
-	string recover(int currentState, int stateMoves[][2], int trellis[][2]);
+	string recover(string text, int currentState, int stateMoves[][2], string trellis[][2]);
 	void addLayer(node** tree, int stateMoves[][2]);
-	//void print_tree();
-	//bool search(int inputBit);
+	node* testPaths(string text, string trellis[][2]);
+	string getText(node* solution);
 private:
 	void terminate_tree(node* tree);
 	void insert(node** tree, int inputBit, int state);
-	string recover(node** tree, int currentState, int stateMoves[][2], int trellis[][2]);
-	//void print_tree(node* tree);
-	//bool search(node*, int inputBit);
+	string recover(node** tree, string targetBits, int currentState, int stateMoves[][2], string trellis[][2]);
+	node* testPaths(node*, string targetBits, string trellis[][2]);
 	node* root;
 };
 
