@@ -41,32 +41,36 @@ void BST::insert(node** tree, int inputBit, int state) {
 	}
 }
 
-string BST::recover(int currentState, int stateMoves[][2]) {
-	return recover(&root, currentState, stateMoves);
-
-	//trace->insert(0, currentState);
-	//while (true) { //while error
-	//	//for each node in tree
-
-	//	for (int bits = 0; bits < 2; bits++) {
-	//		//add 2 children
-	//		trace->insert(bits, stateMoves[currentState][bits]);
-	//	}
-	//
-	//	//check there outputs against bits
-	//	//if match found, trace back
-
-	//	break;
-	//}
+string BST::recover(int currentState, int stateMoves[][2], int trellis[][2]) {
+	return recover(&root, currentState, stateMoves, trellis);
 }
 
 
-string BST::recover(node** tree, int currentState, int stateMoves[][2]) {
+string BST::recover(node** tree, int currentState, int stateMoves[][2], int trellis[][2]) {
 	if (tree != NULL) {
-		for (int bits = 0; bits < 2; bits++) {
-			insert(tree, bits, stateMoves[currentState][bits]);
-			//insert return pointer, recursivly call recover with this
+		int depthCounter = 0;
+		while (true) {
+
+			//Safety to prevent infinite while loop and limit the size of the tree
+			if (depthCounter >= 9) {
+				return "";
+			}
+
+			addLayer(tree, stateMoves);
+			
+			//test
 		}
+	}
+}
+
+void BST::addLayer(node** tree, int stateMoves[][2]) {
+	if ((*tree)->left == NULL && (*tree)->right == NULL) {
+		insert(&(*tree)->left, 0, stateMoves[(*tree)->state][0]);
+		insert(&(*tree)->right, 1, stateMoves[(*tree)->state][1]);
+	}
+	else {
+		addLayer(&(*tree)->left, stateMoves);
+		addLayer(&(*tree)->right, stateMoves);
 	}
 }
 

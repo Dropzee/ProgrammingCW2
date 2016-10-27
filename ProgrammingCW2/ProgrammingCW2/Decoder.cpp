@@ -42,7 +42,7 @@ string Decoder::insertError(string input) {
 
 //string states[8] = { "000", "001", "010", "011", "100", "101", "110", "111" };
 //int stateMoves[8][2] = { { 0 , 4 },{ 0 , 4 },{ 1 , 5 },{ 1 , 5 },{ 2 , 6 },{ 2 , 6 },{ 3 , 7 },{ 3 , 7 } };
-string Decoder::decode(string arr[][2], string input) {
+string Decoder::decode(string trellis[][2], string input) {
 
 	string decodedText;
 
@@ -54,19 +54,19 @@ string Decoder::decode(string arr[][2], string input) {
 		string bits = input.substr(place,2);
 
 		//If they match the output from current state given a 0...
-		if (bits.compare(arr[currentState][0]) == 0) {
+		if (bits.compare(trellis[currentState][0]) == 0) {
 			decodedText += "0";
 			currentState = stateMoves[currentState][0];
 		}
 		//If they match the output from current state given a 1...
-		else if (bits.compare(arr[currentState][1]) == 0) {
+		else if (bits.compare(trellis[currentState][1]) == 0) {
 			decodedText += "1";
 			currentState = stateMoves[currentState][1];
 		}
 		//There was an error...
 		else {
 			BST* trace = new BST(); //int = state
-			string text = trace->recover(currentState, stateMoves);
+			string text = trace->recover(currentState, stateMoves, trellis);
 			decodedText += text;
 			place += text.length();
 		}

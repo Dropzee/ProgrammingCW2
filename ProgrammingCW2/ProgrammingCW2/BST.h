@@ -17,13 +17,14 @@ public:
 	BST();
 	~BST();
 	void insert(int inputBit, int state);
-	string recover(int currentState, int stateMoves[][2]);
+	string recover(int currentState, int stateMoves[][2], int trellis[][2]);
+	void addLayer(node** tree, int stateMoves[][2]);
 	//void print_tree();
 	//bool search(int inputBit);
 private:
 	void terminate_tree(node* tree);
 	void insert(node** tree, int inputBit, int state);
-	string recover(node** tree, int currentState, int stateMoves[][2]);
+	string recover(node** tree, int currentState, int stateMoves[][2], int trellis[][2]);
 	//void print_tree(node* tree);
 	//bool search(node*, int inputBit);
 	node* root;
