@@ -65,14 +65,13 @@ string Decoder::decode(string trellis[][2], string input) {
 		}
 		//There was an error...
 		else {
-			BST* trace = new BST(); //int = state
+			BST* trace = new BST(); 
 			string text = trace->recover(input.substr(place), currentState, stateMoves, trellis);
 			decodedText += text;
 			place += text.length();
+			delete trace;
 		}
 	}
-
-	//REMEMBER TO DELETE TREE
 
 	return decodedText;
 }

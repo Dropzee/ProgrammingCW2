@@ -55,7 +55,7 @@ string BST::recover(node** tree, string text, int currentState, int stateMoves[]
 	while (true) {
 
 		//Safety to prevent infinite while loop and limit the size of the tree
-		if (depthCounter >= 9) {
+		if (depthCounter >= (text.length() / 2) || depthCounter >= 5) {
 			return "";
 		}
 
@@ -63,7 +63,9 @@ string BST::recover(node** tree, string text, int currentState, int stateMoves[]
 
 		node* solution = testPaths(text.substr(depthCounter * 2, 2), trellis);
 		if (solution != NULL) {
-			//akfhasjldasl;jdfh
+			stack<int> output;
+			getText(solution, &output);
+			return "";
 		}
 
 		depthCounter++;
@@ -106,6 +108,31 @@ node* BST::testPaths(node* tree, string targetBits, string trellis[][2]) {
 	return NULL;
 }
 
-string BST::getText(node* solution) {
-	return "";
+void BST::getText(node* solution, stack<int>* output) {
+	output->push(root->inputBit);
+	getText(root, solution, output);
+}
+
+void BST::getText(node* tree, node* solution, stack<int>* output) {
+	if (tree == NULL) {
+		return;
+	}
+	else {
+		if (tree == solution) {
+			output->push(tree->inputBit);
+			return;
+		}
+		
+		if (tree->left != NULL) {
+			output->push(tree->left->inputBit);
+			getText(tree->left, solution, output);
+			output->pop();
+		}
+
+		if (tree->right != NULL) {
+			output->push(tree->right->inputBit);
+			getText(tree->right, solution, output);
+			output->pop();
+		}
+	}
 }
