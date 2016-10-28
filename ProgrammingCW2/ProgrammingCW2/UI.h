@@ -14,6 +14,6 @@ public:
 	int menu();
 	void decoded(bool b);
 	void view(string names[], string outputs[]);
-	void anaylse(string original, string decodedText[], string decodedErrors[]);
+	void anaylse(string original, string names[], string decodedText[], string decodedErrors[]);
 };
 

@@ -29,7 +29,8 @@ int main() {
 			//1 - Decode
 			case 1:
 				if (decodedText[0] == "") {
-					ui->decoded(true);
+					cout << "Please wait..." << endl;
+
 					//For each encoded file from CW1...
 					for (int i = 0; i < 49; i++) {
 
@@ -48,6 +49,7 @@ int main() {
 						io->write(decodedText[i], "Decoded\\Without Error\\" + fileNames[i]);
 						io->write(decodedError[i], "Decoded\\With Error\\" + fileNames[i]);
 					}
+					ui->decoded(true);
 				}
 				else {
 					ui->decoded(false);
@@ -64,7 +66,7 @@ int main() {
 			//4 - Compare to original binary file
 			case 4:
 				originalText = io->read("binaryFile.txt");
-				ui->anaylse(originalText, decodedText, decodedError);
+				ui->anaylse(originalText, fileNames, decodedText, decodedError);
 				break;
 			//5 - Exit
 			case 5:

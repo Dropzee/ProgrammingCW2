@@ -59,19 +59,21 @@ void UI::view(string names[], string outputs[]) throw (invalid_argument, out_of_
 	return;
 }
 
-void UI::anaylse(string original, string decodedText[], string decodedErrors[]) {
+void UI::anaylse(string original, string names[], string decodedText[], string decodedErrors[]) {
 	if (decodedText[0] == "") {
 		cout << "Files have not been decoded yet, please decode first." << endl;
 	}
 	else {
+		cout << "--------- SUCCESSFUL DECODES ---------" << endl;
 		int textCount = 0;
 		int errorCount = 0;
 		for (int i = 0; i < 49; i++) {
 			if (original.compare(decodedText[i]) == 0) {
-				cout << i << endl;
+				cout << i << ". " << names[i] << " - (Without Errors)" << endl;
 				textCount++;
 			}
 			if (original.compare(decodedErrors[i]) == 0) {
+				cout << i << ". " << names[i] << " - (With Errors)" << endl;
 				errorCount++;
 			}
 		}
