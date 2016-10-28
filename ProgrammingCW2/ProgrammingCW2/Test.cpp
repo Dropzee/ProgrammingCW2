@@ -7,8 +7,6 @@
 
 using namespace std;
 
-void analyse(string in, string out){}
-
 int main() {
 	
 	string originalText;
@@ -19,29 +17,34 @@ int main() {
 	Decoder* d = new Decoder();
 	UI* ui = new UI();
 
-	//string s;
-
 	try {
-
-		originalText = io->read("binaryFile.txt");
-		io->read(&fileNames[0],"fileNames.txt");
-
-
-		/*encodedText[43] = io->read("Encoded\\" + fileNames[43] + ".txt");
-		d->generateTrellis(trellis[43], fileNames[43]);
-		s = d->decode(trellis[43], encodedText[43]);*/
-
+		//Interface loop
 		while (true) {
+
+			//Get list of encoded files from CW1
+			io->read(&fileNames[0],"fileNames.txt");
+
+			//Switch on menu option input
 			switch (ui->menu()) {
+			//1 - Decode
 			case 1:
 				if (decodedText[0] == "") {
 					ui->decoded(true);
+					//For each encoded file from CW1...
 					for (int i = 0; i < 49; i++) {
+
+						//Read in data, make a copy and add errors to it
 						encodedText[i] = io->read("Encoded\\" + fileNames[i] + ".txt");
 						burstErrorText[i] = d->insertError(encodedText[i]);
+
+						//Generate trellis using register set up stored in the file name
 						d->generateTrellis(trellis[i], fileNames[i]);
+
+						//Decode both encoded texts
 						decodedText[i] = d->decode(trellis[i], encodedText[i]);
 						decodedError[i] = d->decode(trellis[i], burstErrorText[i]);
+
+						//Output results of decoding to file
 						io->write(decodedText[i], "Decoded\\Without Error\\" + fileNames[i]);
 						io->write(decodedError[i], "Decoded\\With Error\\" + fileNames[i]);
 					}
@@ -50,15 +53,20 @@ int main() {
 					ui->decoded(false);
 				}
 				break;
+			//2 - View decoded with no error
 			case 2:
 				ui->view(fileNames, decodedText);
 				break;
+			//3 - View decoded with error
 			case 3:
 				ui->view(fileNames, decodedError);
 				break;
+			//4 - Compare to original binary file
 			case 4:
+				originalText = io->read("binaryFile.txt");
 				ui->anaylse(originalText, decodedText, decodedError);
 				break;
+			//5 - Exit
 			case 5:
 				goto Exit;
 			default:

@@ -24,7 +24,7 @@ string Decoder::insertError(string input) {
 		if (burstMode) {
 			input[i] = (char)((rand() % 2 + 48)); //ascii 0 - 48, 1 - 49
 			count++;
-			if (count > 4) { //4
+			if (count > 4) { 
 				burstMode = false;
 				count = 0;
 			}
@@ -92,10 +92,8 @@ void Decoder::generateTrellis(string arr[][2], string name) {
 			string current = to_string(bit) + states[state];
 
 			//Calculate what the output would be given register setup (uses file name to get register permutation)
-
 			arr[state][bit] += XOR(current.at(name.at(15) - 48), current.at(name.at(17) - 48));
 			arr[state][bit] += XOR(current.at(name.at(5) - 48), current.at(name.at(7) - 48));
-			//arr[state][bit] += XOR(current.at(name.at(15) - 48), current.at(name.at(17) - 48));
 
 		}
 	}
